@@ -1,6 +1,6 @@
 package com.company;
 
-public class SendableClass<T> implements Sendable<T>{
+public static class SendableClass<T> implements Sendable<T> {
     private String from;
     private String to;
     private T content;
