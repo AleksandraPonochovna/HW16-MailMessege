@@ -1,7 +1,9 @@
 package com.company;
 
-public interface Sendable<T> {
+public static interface Sendable<T> {
     String getFrom();
+
     String getTo();
+
     T getContent();
 }
