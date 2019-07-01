@@ -18,12 +18,12 @@ public static class MailService<T> implements Consumer<Sendable<T>> {
 
     @Override
     public void accept(Sendable<T> sendable) {
-        List<T> ts = messagesMap.get(sendable.getTo());
-        if (ts.size() == 0) {
-            ts = new ArrayList<>();
+        List<T> list = messagesMap.get(sendable.getTo());
+        if (list.size() == 0) {
+            list = new ArrayList<>();
         }
-        ts.add(sendable.getContent());
-        messagesMap.put(sendable.getTo(), ts);
+        list.add(sendable.getContent());
+        messagesMap.put(sendable.getTo(), list);
     }
 
     public Map<String, List<T>> getMailBox() {
