@@ -3,20 +3,18 @@ package com.company;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class MailService<T> implements Consumer<Sendable<T>> {
+public static class MailService<T> implements Consumer<Sendable<T>> {
 
-    private Map<String, List<T>> mailBox;
+    private Map<String, List<T>> messagesMap;
 
-    private Map<String, List<T>> messagesMap = new HashMap<String, List<T>>(){
-        @Override
-        public List<T> get(Object key) {
-            if (this.containsKey(key)) {
-                return super.get(key);
-            } else {
-                return Collections.emptyList();
+    public MailService() {
+        messagesMap = new HashMap<String, List<T>>() {
+            @Override
+            public List<T> get(Object key) {
+                return getOrDefault(key, Collections.emptyList());
             }
-        }
-    };
+        };
+    }
 
     @Override
     public void accept(Sendable<T> sendable) {
