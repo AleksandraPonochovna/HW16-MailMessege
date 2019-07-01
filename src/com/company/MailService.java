@@ -1,6 +1,10 @@
 package com.company;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public static class MailService<T> implements Consumer<Sendable<T>> {
@@ -19,7 +23,7 @@ public static class MailService<T> implements Consumer<Sendable<T>> {
     @Override
     public void accept(Sendable<T> sendable) {
         List<T> list = messagesMap.get(sendable.getTo());
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             list = new ArrayList<>();
         }
         list.add(sendable.getContent());
